@@ -64,6 +64,53 @@ if (marqueeTrack) {
   });
 }
 
+// Cookie consent banner
+// Stores { necessary: true, stats: bool, ts } in localStorage. Nothing reads
+// the "stats" flag today (the site loads no analytics/marketing scripts) —
+// it exists so a future addition (e.g. analytics) has a consent gate to
+// check before loading, without needing to touch this banner again.
+const cookieBanner = document.getElementById('cookieBanner');
+if (cookieBanner) {
+  const CONSENT_KEY = 'cookieConsent';
+  const settingsPanel = document.getElementById('cookieSettings');
+  const statsToggle = document.getElementById('cookieStatsToggle');
+  const acceptBtn = document.getElementById('cookieAcceptBtn');
+  const rejectBtn = document.getElementById('cookieRejectBtn');
+  const settingsBtn = document.getElementById('cookieSettingsBtn');
+  const saveBtn = document.getElementById('cookieSaveBtn');
+  const reopenLinks = document.querySelectorAll('.js-cookie-reopen');
+
+  const getConsent = () => {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); } catch { return null; }
+  };
+  const setConsent = (stats) => {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({ necessary: true, stats, ts: Date.now() }));
+  };
+  const show = (openSettings) => {
+    cookieBanner.hidden = false;
+    requestAnimationFrame(() => cookieBanner.classList.add('is-visible'));
+    document.body.classList.add('cookie-banner-open');
+    if (openSettings) {
+      settingsPanel.hidden = false;
+      const existing = getConsent();
+      statsToggle.checked = !!(existing && existing.stats);
+    }
+  };
+  const hide = () => {
+    cookieBanner.classList.remove('is-visible');
+    document.body.classList.remove('cookie-banner-open');
+    setTimeout(() => { cookieBanner.hidden = true; settingsPanel.hidden = true; }, 350);
+  };
+
+  acceptBtn.addEventListener('click', () => { setConsent(true); hide(); });
+  rejectBtn.addEventListener('click', () => { setConsent(false); hide(); });
+  settingsBtn.addEventListener('click', () => { settingsPanel.hidden = !settingsPanel.hidden; if (!settingsPanel.hidden) { const existing = getConsent(); statsToggle.checked = !!(existing && existing.stats); } });
+  saveBtn.addEventListener('click', () => { setConsent(statsToggle.checked); hide(); });
+  reopenLinks.forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); show(true); }));
+
+  if (!getConsent()) show(false);
+}
+
 // Hero video: respect reduced-motion, and pause when scrolled out of view
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {

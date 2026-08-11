@@ -6,9 +6,7 @@
 <title>4U Hair Naddaf — Friseur Wien</title>
 <meta name="description" content="4U Hair Naddaf – moderner Friseur in Wien 1190. Herrenhaarschnitt, Bartpflege & klassische Rasur an zwei Standorten. Termine nur telefonisch.">
 <link rel="icon" href="/content/logo.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -231,11 +229,44 @@
       <a href="tel:+4318902126">Standort 1: 01 890 21 26</a>
       <a href="tel:+4314101093">Standort 2: 01 410 10 93</a>
     </div>
+    <div class="footer-legal">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <button type="button" class="js-cookie-reopen">Cookie-Einstellungen</button>
+    </div>
     <p class="footer-copy">© <span id="year"></span> 4U Hair Naddaf. Alle Rechte vorbehalten.</p>
   </div>
 </footer>
 
 <a href="tel:+4318902126" class="mobile-call-cta">Jetzt anrufen</a>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-label="Cookie-Einstellungen" hidden>
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">Diese Website verwendet aktuell nur technisch notwendige Daten (z. B. um Ihre Auswahl hier zu speichern) — keine Statistik- oder Marketing-Cookies. Details in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-ghost" id="cookieSettingsBtn">Einstellungen</button>
+      <button type="button" class="btn btn-ghost" id="cookieRejectBtn">Nur notwendige</button>
+      <button type="button" class="btn btn-primary" id="cookieAcceptBtn">Alle akzeptieren</button>
+    </div>
+  </div>
+  <div class="cookie-settings" id="cookieSettings" hidden>
+    <div class="cookie-cat">
+      <div>
+        <strong>Notwendig</strong>
+        <p>Speichert ausschließlich Ihre Cookie-Auswahl auf diesem Gerät. Kann nicht deaktiviert werden.</p>
+      </div>
+      <input type="checkbox" checked disabled aria-label="Notwendig, immer aktiv">
+    </div>
+    <div class="cookie-cat">
+      <div>
+        <strong>Statistik &amp; Marketing</strong>
+        <p>Aktuell nicht im Einsatz. Wird nur aktiviert, falls wir das künftig nutzen und Sie zustimmen.</p>
+      </div>
+      <input type="checkbox" id="cookieStatsToggle" aria-label="Statistik und Marketing">
+    </div>
+    <button type="button" class="btn btn-primary" id="cookieSaveBtn">Auswahl speichern</button>
+  </div>
+</div>
 
 <script src="/js/script.js"></script>
 </body>
