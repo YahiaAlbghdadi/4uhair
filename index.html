@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4U Hair Naddaf — Template-Auswahl</title>
+<link rel="icon" href="/content/logo.png" type="image/png">
+<style>
+  :root{
+    --black:#0a0a0b; --cream:#f4efe3; --cream-dim:#cfc9b8;
+    --gold:#c9a227; --gold-light:#e6c860; --line:rgba(201,162,39,.28);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100svh; background:var(--black); color:var(--cream);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 4rem 1.5rem; text-align:center;
+  }
+  img.logo{ width:72px; height:72px; object-fit:contain; margin-bottom:1.2rem; }
+  h1{ font-size: clamp(1.6rem,4vw,2.2rem); margin:0 0 .4em; letter-spacing:.02em; }
+  p.lead{ color:var(--cream-dim); max-width:46ch; margin:0 auto 2.5rem; line-height:1.6; }
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; max-width:760px; width:100%; }
+  .card{
+    display:block; border:1px solid var(--line); border-radius:4px; padding:2.2rem 1.6rem;
+    text-decoration:none; color:var(--cream); background:linear-gradient(180deg,#141416,#0a0a0b);
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform: translateY(-4px); border-color: var(--gold); }
+  .card h2{ margin:0 0 .5em; font-size:1.3rem; color: var(--gold-light); }
+  .card p{ margin:0; color:var(--cream-dim); font-size:.95rem; line-height:1.55; }
+  .card span{ display:inline-block; margin-top:1.2rem; font-size:.82rem; font-weight:600; color:var(--gold); letter-spacing:.04em; }
+  footer{ margin-top:3rem; font-size:.78rem; color:#6b6658; }
+</style>
+</head>
+<body>
+  <img src="/content/logo.png" alt="4U Hair Naddaf Logo" class="logo">
+  <h1>4U Hair Naddaf — Website-Entwürfe</h1>
+  <p class="lead">Zwei vollständige Template-Varianten zur Auswahl — beide mit denselben Inhalten (Leistungen, Galerie, Standorte, Kontakt), unterschiedlich gestaltet.</p>
+  <div class="cards">
+    <a class="card" href="/modern/index.html">
+      <h2>Modern</h2>
+      <p>Klare Linien, große Typografie, dynamische Animationen. Zeitgemäß und minimalistisch.</p>
+      <span>Ansehen →</span>
+    </a>
+    <a class="card" href="/traditional/index.html">
+      <h2>Traditional</h2>
+      <p>Ornamentale Details, klassische Serifen, edle Gold-Akzente. Klassisches Barbershop-Flair.</p>
+      <span>Ansehen →</span>
+    </a>
+  </div>
+  <footer>Interne Vorschau · nicht für Endkunden bestimmt</footer>
+</body>
+</html>
