@@ -1,0 +1,24 @@
+name: Deploy to Hetzner
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy over SSH
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 128.140.83.185 >> ~/.ssh/known_hosts
+
+          tar --exclude='.git' --exclude='.github' -czf - . | \
+            ssh -i ~/.ssh/deploy_key root@128.140.83.185 \
+            "rm -rf /var/www/4uhairnaddaf.at/* && tar -xzf - -C /var/www/4uhairnaddaf.at && chown -R www-data:www-data /var/www/4uhairnaddaf.at"
