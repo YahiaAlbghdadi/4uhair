@@ -1,3 +1,27 @@
+// Preloader: shows briefly on first paint, fades out once the page (and
+// hero media) has actually loaded, then reveals the hero content.
+const preloader = document.getElementById('preloader');
+if (preloader) {
+  document.body.classList.add('is-loading');
+  const MIN_DISPLAY_MS = 450; // avoids a flash-then-gone blink on fast connections
+  const shownAt = performance.now();
+  let hidden = false;
+  const hidePreloader = () => {
+    if (hidden) return;
+    hidden = true;
+    const wait = Math.max(0, MIN_DISPLAY_MS - (performance.now() - shownAt));
+    setTimeout(() => {
+      preloader.classList.add('is-hidden');
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('is-loaded');
+      setTimeout(() => preloader.remove(), 700);
+    }, wait);
+  };
+  if (document.readyState === 'complete') hidePreloader();
+  else window.addEventListener('load', hidePreloader);
+  setTimeout(hidePreloader, 4000); // fallback if 'load' stalls (e.g. slow connection)
+}
+
 // Header scroll state
 const header = document.getElementById('header');
 const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
